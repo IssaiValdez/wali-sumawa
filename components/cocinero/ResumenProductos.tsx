@@ -35,30 +35,36 @@ export function ResumenProductos() {
   }
 
   return (
-    <div className="bg-gradient-to-r from-purple-100 to-indigo-100 border-2 border-purple-300 rounded-lg p-4">
+    <div className="bg-gradient-to-br from-purple-100 via-indigo-100 to-blue-100 border-2 border-purple-400 rounded-2xl p-6 shadow-xl mb-6 hover:shadow-2xl transition-all duration-300">
       <button
         onClick={() => setExpandido(!expandido)}
-        className="w-full text-left font-bold text-purple-700 flex justify-between items-center hover:opacity-75"
+        className="w-full text-left font-bold text-purple-800 flex justify-between items-center hover:opacity-80 transition-opacity active:scale-95 transform duration-200"
       >
-        <span>📊 Resumen de Productos en Preparación</span>
-        <span>{expandido ? '▼' : '▶'}</span>
+        <span className="flex items-center gap-2 text-lg">
+          📊 Resumen de Productos
+          <span className="text-sm bg-purple-600 text-white px-3 py-1 rounded-full">{productosOrdenados.length}</span>
+        </span>
+        <span className="text-2xl">{expandido ? '▼' : '▶'}</span>
       </button>
 
       {expandido && (
-        <div className="mt-4 space-y-3">
-          {productosOrdenados.map(producto => (
-            <div key={producto.id} className="bg-white rounded p-3 border-l-4 border-purple-500">
-              <div className="flex justify-between items-start">
+        <div className="mt-4 space-y-3 animation-slideDown">
+          {productosOrdenados.map((producto, idx) => (
+            <div
+              key={producto.id}
+              className="bg-white rounded-xl p-4 border-2 border-purple-300 shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200 transform"
+            >
+              <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">
-                  <h4 className="font-bold text-lg text-purple-700">{producto.nombre}</h4>
-                  <p className="text-sm text-gray-600">
-                    Cantidad total: <span className="font-bold text-lg">{producto.cantidad}</span>
+                  <h4 className="font-bold text-lg text-purple-800">{producto.nombre}</h4>
+                  <p className="text-sm text-gray-600 mt-1">
+                    <span className="font-semibold">Total:</span> <span className="text-lg font-bold text-purple-700">{producto.cantidad} unidades</span>
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    En pedidos: {producto.pedidos.join(', ')}
+                  <p className="text-xs text-gray-500 mt-2">
+                    <span className="font-semibold">En pedidos:</span> {producto.pedidos.join(', ')}
                   </p>
                 </div>
-                <div className="bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">
+                <div className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-2xl shadow-lg flex-shrink-0">
                   {producto.cantidad}
                 </div>
               </div>
