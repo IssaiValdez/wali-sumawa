@@ -5,8 +5,11 @@ import Link from 'next/link';
 import { CocineroProvider } from '@/lib/cocinero/context';
 import { ResumenProductos } from '@/components/cocinero/ResumenProductos';
 import { ControlProductos } from '@/components/cocinero/ControlProductos';
-import { Configuracion } from '@/components/cocinero/Configuracion';
+import { ModalProductos } from '@/components/cocinero/ModalProductos';
 import { VisorRecetas } from '@/components/cocinero/VisorRecetas';
+import { ModalRecetas } from '@/components/cocinero/ModalRecetas';
+import { Configuracion } from '@/components/cocinero/Configuracion';
+import { ModalConfiguracion } from '@/components/cocinero/ModalConfiguracion';
 
 export default function CocinerLayout({
   children,
@@ -14,6 +17,9 @@ export default function CocinerLayout({
   children: React.ReactNode;
 }) {
   const [notificacionesPermitidas, setNotificacionesPermitidas] = useState(false);
+  const [mostrarModalProductos, setMostrarModalProductos] = useState(false);
+  const [mostrarModalRecetas, setMostrarModalRecetas] = useState(false);
+  const [mostrarModalConfiguracion, setMostrarModalConfiguracion] = useState(false);
 
   useEffect(() => {
     if ('Notification' in window && Notification.permission === 'default') {
@@ -64,9 +70,9 @@ export default function CocinerLayout({
                 }
               `}</style>
               
-              <ControlProductos />
-              <VisorRecetas />
-              <Configuracion />
+              <ControlProductos mostrarModal={mostrarModalProductos} onToggleModal={() => setMostrarModalProductos(!mostrarModalProductos)} />
+              <VisorRecetas mostrarModal={mostrarModalRecetas} onToggleModal={() => setMostrarModalRecetas(!mostrarModalRecetas)} />
+              <Configuracion mostrarModal={mostrarModalConfiguracion} onToggleModal={() => setMostrarModalConfiguracion(!mostrarModalConfiguracion)} />
               
               {!notificacionesPermitidas && (
                 <div className="bg-gradient-to-br from-yellow-100 to-amber-100 border-2 border-yellow-400 rounded-xl p-4 text-sm shadow-md hover:shadow-lg transition-all">
@@ -85,6 +91,11 @@ export default function CocinerLayout({
             </div>
           </div>
         </div>
+
+        {/* Modales - Nivel Superior */}
+        <ModalProductos mostrar={mostrarModalProductos} onCerrar={() => setMostrarModalProductos(false)} />
+        <ModalRecetas mostrar={mostrarModalRecetas} onCerrar={() => setMostrarModalRecetas(false)} />
+        <ModalConfiguracion mostrar={mostrarModalConfiguracion} onCerrar={() => setMostrarModalConfiguracion(false)} />
       </div>
     </CocineroProvider>
   );
