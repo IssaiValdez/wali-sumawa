@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Home() {
+  const [metodoPago, setMetodoPago] = useState("");
+
   return (
     <main className="p-8">
       <h1 className="text-3xl font-bold mb-6">
@@ -28,17 +34,37 @@ export default function Home() {
       </div>
 
       <div className="border p-4 rounded mb-4">
-        <h2 className="font-bold">Método de Pago</h2>
+        <h2 className="font-bold mb-3">Método de Pago</h2>
 
-        <div className="flex gap-4 mt-3">
-          <button className="border px-4 py-2">
+        <div className="flex gap-4">
+          <button
+            onClick={() => setMetodoPago("Efectivo")}
+            className={`px-4 py-2 border rounded ${
+              metodoPago === "Efectivo"
+                ? "bg-green-500 text-white"
+                : ""
+            }`}
+          >
             Efectivo
           </button>
 
-          <button className="border px-4 py-2">
+          <button
+            onClick={() => setMetodoPago("QR")}
+            className={`px-4 py-2 border rounded ${
+              metodoPago === "QR"
+                ? "bg-red-500 text-white"
+                : ""
+            }`}
+          >
             QR
           </button>
         </div>
+
+        {metodoPago && (
+          <p className="mt-3">
+            Método seleccionado: {metodoPago}
+          </p>
+        )}
       </div>
 
       <button className="bg-red-400 text-white px-4 py-2 rounded">
