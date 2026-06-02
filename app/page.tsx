@@ -1,63 +1,53 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4">
+      <main className="w-full max-w-2xl">
+        <div className="bg-gradient-to-r from-red-600 to-orange-600 rounded-lg p-8 mb-8 shadow-2xl text-center">
+          <h1 className="text-5xl font-bold text-white mb-3">🍳 Wali Sumawa</h1>
+          <p className="text-xl text-orange-100 mb-2">Sistema de Gestión de Kiosco de Comidas</p>
+          <p className="text-orange-50">Administra pedidos, productos y entregas de forma eficiente</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="space-y-4">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+            <div className="bg-gradient-to-r from-red-600 to-orange-600 p-6">
+              <h2 className="text-2xl font-bold text-white mb-2">🍳 Panel del Cocinero</h2>
+              <p className="text-orange-100">Visualiza, gestiona y prepara pedidos en tiempo real</p>
+            </div>
+            <div className="p-6">
+              <ul className="space-y-2 text-gray-700 mb-4">
+                <li className="flex items-center gap-2">✓ Visualizar pedidos pendientes y en preparación</li>
+                <li className="flex items-center gap-2">✓ Notificaciones sonoras y visuales</li>
+                <li className="flex items-center gap-2">✓ Gestionar productos agotados</li>
+                <li className="flex items-center gap-2">✓ Ver recetas y procesos</li>
+                <li className="flex items-center gap-2">✓ Asignar tiempos estimados</li>
+                <li className="flex items-center gap-2">✓ Control de cocina saturada</li>
+              </ul>
+              <Link
+                href="/cocinero"
+                className="block w-full px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-lg text-center hover:from-red-700 hover:to-orange-700 transition"
+              >
+                Ir al Panel del Cocinero →
+              </Link>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+            <h3 className="font-bold text-blue-900 mb-2">📱 Módulos Disponibles</h3>
+            <ul className="space-y-1 text-blue-800 text-sm">
+              <li>• Panel Principal - Gestión de pedidos</li>
+              <li>• Historial - Consulta entregas realizadas</li>
+              <li>• Resumen - Análisis de productos en preparación</li>
+              <li>• Recetas - Acceso a instrucciones de preparación</li>
+              <li>• Configuración - Ajustes y alertas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 text-center text-gray-400 text-sm">
+          <p>🔧 Sistema en desarrollo - Rama: <span className="font-mono bg-slate-700 px-2 py-1 rounded">Cocinero</span></p>
         </div>
       </main>
     </div>
